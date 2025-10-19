@@ -33,3 +33,5 @@ NOK =$ ( expr $NOK + 1) #Ajouter 1 à la valeur acteulle de l'argument NOK lorsq
 fi #Fin de la condition
 done < $FICHIER_URLS #Fin de la boucle while
 echo " $OK URLs et $NOK lignes douteuses " #L'interpréteur affcige un message indiquant le nombre total d'URLS et de lignes douteuses
+
+J'ai fini les exercices script et j'ai renommé le script du permier exercice car je l'avais nommé autrement que ce que la consigne indiquait
