@@ -35,3 +35,30 @@ done < $FICHIER_URLS #Fin de la boucle while
 echo " $OK URLs et $NOK lignes douteuses " #L'interpréteur affcige un message indiquant le nombre total d'URLS et de lignes douteuses
 
 J'ai fini les exercices script et j'ai renommé le script du permier exercice car je l'avais nommé autrement que ce que la consigne indiquait
+
+Pour le miniprojet:
+
+J'ai trouvé l'exercice 1 très intéresseant car il m'a permis de mieux comprendre la méthode < "urls/fr.txt" et sa différence avec la commande cat. Je sais maintenant pouruqoi il est pertinent d'tuliser cette méthode avec les boucles.
+
+J'ai eu plus de mal au moement de l'exercice 2.
+Voici le code que j'ai créé:
+
+#!/bin/bash
+
+compteur=1
+FICHIER="fr.txt"
+
+while read -r line;
+do
+http_sortie=$(curl -s -o /dev/null -w "%{http_code}" -L "$line")
+nombre_mots=$(lynx -dump "$line"| wc -w)
+encodage=$(lynx -source "$line"| grep -i '<meta.*charset')
+echo -e "$compteur\t$http_sortie\t$nombre_mots\t$encodage\t${line}";
+((compteur ++))
+
+done < "$FICHIER"
+
+J'ai surtout rencontré des difficultés de syntaxe, c'était parfois des erreurs d'inattention comme un espace en trop au moment de définir des variables. Mais là où j'ai eu du mal, c'était pour comprendre comment intégrer les commandes lynx et curl. Je sais maintenant qu'il faut suivre la structure suivant: variable=$(commande [option] ...).
+Il y a également beaucoup d'options que je ne connaissais pas comme -source par exemple mais je me suis aidé de la commande man sur mon terminal ou de blogs en ligne.
+Là où c'était le moins intuitif pour moi, c'était pour tout simplement car je ne connaissais pas charset.
+Enfin, j'ai trouvé ça intéressant de créer un tableau depuis les données que j'ai obtenu dans mon terminal.
